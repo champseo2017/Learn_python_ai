@@ -9,6 +9,6 @@ emotion_dataset = load_dataset("emotion", trust_remote_code=True)
 train_ds = emotion_dataset["train"]
 
 """
-เรายังสามารถเข้าถึงชื่อคอลัมน์ทั้งหมดได้ผ่าน train_ds.column_names ซึ่งจะให้ผลลัพธ์เป็น list ของชื่อคอลัมน์ ['text', 'label']
+เราสามารถดูได้ว่า Dataset กำลังใช้ data type อะไรในการเก็บข้อมูลผ่าน attribute ชื่อ features
 """
-print(train_ds.column_names)
+print(train_ds.features)
