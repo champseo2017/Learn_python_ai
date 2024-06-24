@@ -9,6 +9,6 @@ emotion_dataset = load_dataset("emotion", trust_remote_code=True)
 train_ds = emotion_dataset["train"]
 
 """
-เข้าถึงข้อมูลแถวเดียว เช่น train_ds[0] เราจะได้ข้อมูลออกมาในรูปแบบของ dictionary ที่มี key เป็นชื่อคอลัมน์ และ value เป็นข้อมูลในแถวนั้นๆ
+เรายังสามารถเข้าถึงชื่อคอลัมน์ทั้งหมดได้ผ่าน train_ds.column_names ซึ่งจะให้ผลลัพธ์เป็น list ของชื่อคอลัมน์ ['text', 'label']
 """
-print(train_ds[0])
+print(train_ds.column_names)
