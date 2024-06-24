@@ -9,6 +9,8 @@ emotion_dataset = load_dataset("emotion", trust_remote_code=True)
 train_ds = emotion_dataset["train"]
 
 """
-เราสามารถดูได้ว่า Dataset กำลังใช้ data type อะไรในการเก็บข้อมูลผ่าน attribute ชื่อ features
+สามารถเข้าถึงข้อมูลหลายแถวพร้อมกันได้ด้วยการใช้ slice
+
+train_ds[:5] หมายถึงการเข้าถึงข้อมูล 5 แถวแรก ซึ่งผลลัพธ์ที่ได้จะเป็น dictionary ที่มี value เป็น list ของข้อมูลใน 5 แถวนั้น
 """
-print(train_ds.features)
+print(train_ds[:5])
