@@ -14,7 +14,11 @@ token2idx = {ch: idx for idx, ch in enumerate(sorted(set(tokenized_text)))}
 # - ใช้ enumerate() เพื่อสร้างคู่ของ index กับ character
 # - สร้าง dict comprehension โดยใช้ชื่อ ch เป็น key และ idx เป็น value
 
-print(token2idx)
+input_ids = [token2idx[token] for token in tokenized_text]
+# สร้าง list comprehension เพื่อแปลงแต่ละ token เป็นตัวเลข
+# โดยใช้ token2idx dict ในการหาตัวเลขที่สอดคล้องกับแต่ละ token
 
-# ผลลัพธ์เป็น dictionary ที่แมปแต่ละตัวอักษรไปเป็นตัวเลขเฉพาะ เช่น 
-# {' ': 0, '.': 1, 'L': 2, 'N': 3, 'P': 4, 'T': 5, ... }
+print(input_ids)
+
+# ผลลัพธ์เป็น list ของตัวเลขที่แทนแต่ละตัวอักษร เช่น
+# [5, 14, 12, 8, 13, 11, 19, 11, 13, 10, 0, 17, 8, ...]
