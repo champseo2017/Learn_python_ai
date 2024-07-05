@@ -1,14 +1,12 @@
-# ตัวอย่างการใช้ removeprefix()
+# ตัวอย่างที่ถูกต้อง
+# ใช้เครื่องหมายคำพูดคู่ (" ") เพื่อครอบข้อความที่มีเครื่องหมายคำพูดเดี่ยว (')
+message = "One of Python's strengths is its diverse community."
+print(message)
 
-# สร้างตัวแปรเก็บ URL
-nostarch_url = 'https://nostarch.com'
+# ตัวอย่างที่ไม่ถูกต้อง (จะเกิด error)
+# ใช้เครื่องหมายคำพูดเดี่ยว (') ครอบข้อความที่มีเครื่องหมายคำพูดเดี่ยว (')
+# message = 'One of Python's strengths is its diverse community.'
+# print(message)
 
-# ใช้ removeprefix() เพื่อลบ 'https://' ออก
-simple_url = nostarch_url.removeprefix('https://')
-
-# แสดงผลลัพธ์
-print(f"URL เดิม: {nostarch_url}")
-print(f"URL ที่ลบ 'https://' ออกแล้ว: {simple_url}")
-
-# ข้อความเดิมไม่เปลี่ยนแปลง
-print(f"URL เดิมยังคงเหมือนเดิม: {nostarch_url}")
+# ถ้าเราใช้คำสั่งด้านบน Python จะแสดง error ประมาณนี้:
+# SyntaxError: unterminated string literal (detected at line 1)
