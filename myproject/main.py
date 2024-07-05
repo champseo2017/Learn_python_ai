@@ -1,17 +1,12 @@
 from huggingface_hub import list_datasets
 from datasets import load_dataset
 
-# โหลดชุดข้อมูล "emotion"
-emotion_dataset = load_dataset("emotion", trust_remote_code=True)
-
-
-# เข้าถึงข้อมูลฝึกซ้อม (training set)
-train_ds = emotion_dataset["train"]
-
+text = "Tokenizing text is a core task of NLP."
 """
-สามารถเข้าถึงข้อมูลทั้งคอลัมน์ได้โดยระบุชื่อคอลัมน์ 
-
-เข้าถึงข้อมูลในคอลัมน์ 'text' โดยเอาแค่ 5 แถวแรก ก็จะได้ list ของข้อความ 5 ข้อความแรกในคอลัมน์นั้น
-
+Python เพราะใต้ฮู้ด string (str) นั้นจะเป็นอาเรย์อยู่แล้ว เราจึงสามารถเปลี่ยนเป็น list เพื่อให้ได้ character token แต่ละตัวได้ทันที
 """
-print(train_ds["text"][:5])
+
+tokenized_text = list(text)
+# เปลี่ยน string ให้เป็น list โดย Python จะแยกเป็น list ที่มีสมาชิกเป็นแต่ละตัวอักษรใน string โดยอัตโนมัติ
+
+print(tokenized_text)
