@@ -1,19 +1,30 @@
-import pandas as pd
+import torch
+import torch.nn.functional as F
 
 """
-เปลี่ยน input_ids ให้เป็น tensor 2 มิติของ one-hot vector
-โดยทั่วไป one-hot vector มักถูกใช้ในการเข้ารหัสข้อมูล categorical ในงาน machine learning ไม่ว่าจะเป็นประเภท ordinal (มีลำดับ) หรือ nominal (ไม่มีลำดับ)
+การสร้าง one-hot encoding ใน PyTorch
+
 """
-categorical_df = pd.DataFrame(
-    {"Name": ["Bumblebee", "Optimus Prime", "Megatron"], 
-     "Label ID": [0,1,2]}
-)
+# ข้อความตัวอย่างและ token ที่สอดคล้อง
+text = "Tokenizing text is a core task of NLP."
+tokenized_text = list(text)
+print("Tokenized text:", tokenized_text)
 
-one_hot_df = pd.get_dummies(categorical_df["Name"]).astype(int)
+# สร้าง dictionary ที่แมป token ไปเป็น index (ID)
+token2idx = {tk: idx for idx, tk in enumerate(sorted(set(tokenized_text)))}
+print("Token-to-index mapping:", token2idx)
 
-print(one_hot_df)
-# ผลลัพธ์
-#    Bumblebee  Megatron  Optimus Prime
-# 0          1         0              0
-# 1          0         0              1
-# 2          0         1              0
+# แปลง tokenized text เป็น IDs
+input_ids = [token2idx[tk] for tk in tokenized_text]
+print("Input IDs:", input_ids)
+
+# แปลง input_ids เป็น tensor ด้วย torch.tensor()
+input_ids_tensor = torch.tensor(input_ids)
+
+# สร้าง one-hot encodings ด้วย F.one_hot()
+vocab_size = len(token2idx)  # จำนวนมิติ = ขนาดของ vocabulary 
+one_hot_encodings = F.one_hot(input_ids_tensor, num_classes=vocab_size)
+
+print("One-hot encodings shape:", one_hot_encodings.shape)
+print("One-hot encodings:")
+print(one_hot_encodings)
