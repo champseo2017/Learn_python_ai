@@ -1,10 +1,10 @@
-def char_tokenize(text):
-    """
-    Tokenize a string at character level.
-    """
-    return list(text)
+text = "Tokenizing text is a core task of NLP."
 
-# ตัวอย่างการใช้งาน
-text = "I love NLP!"
-char_tokens = char_tokenize(text)
-print(char_tokens)
+def word_tokenize(text):
+    """
+    Tokenize a string into words by splitting on whitespace.
+    """
+    return text.split()
+
+tokenized_text = word_tokenize(text)
+print(tokenized_text)
