@@ -1,8 +1,13 @@
-from nltk.stem import PorterStemmer
+from transformers import AutoTokenizer
 
-stemmer = PorterStemmer()
+# กำหนดชื่อ checkpoint ของโมเดลที่ต้องการ
+model_ckpt = "distilbert-base-uncased"
 
-words = ["great", "greater", "greatest"]
+# โหลด tokenizer จาก checkpoint
+tokenizer = AutoTokenizer.from_pretrained(model_ckpt)
 
-stemmed_words = [stemmer.stem(word) for word in words]
-print(stemmed_words)
+# ทดลองใช้ tokenizer กับข้อความตัวอย่าง
+text = "I love NLP and transformers!"
+encoded_text = tokenizer(text)
+
+print(encoded_text)
