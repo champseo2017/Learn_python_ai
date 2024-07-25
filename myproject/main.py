@@ -1,10 +1,8 @@
-text = "Tokenizing text is a core task of NLP."
+from nltk.stem import PorterStemmer
 
-def word_tokenize(text):
-    """
-    Tokenize a string into words by splitting on whitespace.
-    """
-    return text.split()
+stemmer = PorterStemmer()
 
-tokenized_text = word_tokenize(text)
-print(tokenized_text)
+words = ["great", "greater", "greatest"]
+
+stemmed_words = [stemmer.stem(word) for word in words]
+print(stemmed_words)
