@@ -1,7 +1,7 @@
 from transformers import AutoTokenizer, AutoModel
 
 # โหลดโมเดล BERT ที่ถูก train ด้วย bert-base-uncased tokenizer
-model = AutoModel.from_pretrained('bert-base-uncased', from_tf=True)
+model = AutoModel.from_pretrained('bert-base-uncased', from_tf=True, ignore_mismatched_sizes=True)
 
 text = "Hello, how are you today?"
 
@@ -11,9 +11,8 @@ encoded_input = tokenizer(text, return_tensors='pt')
 output = model(**encoded_input)
 # โมเดลจะทำงานได้ถูกต้อง เพราะใช้ tokenizer ที่สอดคล้องกัน
 
-print(f'Encoded input: {encoded_input}')
-print(f'Output type: {type(output)}')
-print(f'Output keys: {output.keys()}')
-print(f'Last hidden state shape: {output.last_hidden_state.size()}')
-print(f'Last hidden state values:')
-print(output.last_hidden_state)
+
+# Case 2: ใช้ tokenizer ผิด 
+wrong_tokenizer = AutoTokenizer.from_pretrained('bert-base-cased')
+encoded_input = wrong_tokenizer(text, return_tensors='pt')  
+output = model(**encoded_input)
