@@ -1,24 +1,20 @@
-# ตัวอย่างการลบ https:// ออกจาก URL
+# ตัวอย่างโค้ดที่มีข้อผิดพลาด
+# Python จะแสดงข้อความผิดพลาดตรงที่มีเครื่องหมาย ^ ด้านล่าง
+# message = 'One of Python's strengths is its diverse community.'
+#                          ^ ตำแหน่งที่เกิดข้อผิดพลาด
 
-# สร้างตัวแปรเก็บ URL เต็ม
-nostarch_url = 'https://nostarch.com'
+# ข้อความแสดงความผิดพลาดที่จะเห็น:
+# SyntaxError: unterminated string literal (detected at line 1)
+# แปลว่า: มีข้อผิดพลาดเกี่ยวกับการเขียนข้อความไม่ถูกต้องตามหลักไวยากรณ์
 
-# ใช้ removeprefix() เพื่อลบ 'https://' ออก
-# วิธีใช้: ชื่อตัวแปร.removeprefix('คำที่ต้องการลบ')
-clean_url = nostarch_url.removeprefix('https://')
-# ผลลัพธ์: 'nostarch.com'
+# วิธีแก้ไขที่ถูกต้อง - มี 3 วิธี:
+# วิธีที่ 1: ใช้เครื่องหมาย " " แทน ' '
+message = "One of Python's strengths is its diverse community."
 
-# ตัวอย่างการใช้งานอื่นๆ
-# ลบคำนำหน้าชื่อออก
-full_name = 'นายสมชาย ใจดี'
-name_only = full_name.removeprefix('นาย')
-# ผลลัพธ์: 'สมชาย ใจดี'
+# วิธีที่ 2: ใช้ \' แทน '
+message = 'One of Python\'s strengths is its diverse community.'
 
-# ลบรหัสนำหน้าสินค้า
-product_code = 'PRD-12345'
-number_only = product_code.removeprefix('PRD-')
-# ผลลัพธ์: '12345'
+# วิธีที่ 3: ใช้ """ """ สำหรับข้อความที่มีทั้ง ' และ "
+message = """One of Python's "strengths" is its diverse community."""
 
-print(clean_url)
-print(name_only)
-print(number_only)
+print(message)
