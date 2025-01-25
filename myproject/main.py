@@ -1,21 +1,24 @@
-# ตั้งค่าข้อความเริ่มต้นที่มีช่องว่างทั้งด้านหน้าและด้านหลัง
-text = ' python '
+# ตัวอย่างการลบ https:// ออกจาก URL
 
-# วิธีที่ 1: ลบช่องว่างด้านขวา
-# ผลลัพธ์จะได้: ' python'
-right_stripped = text.rstrip()
+# สร้างตัวแปรเก็บ URL เต็ม
+nostarch_url = 'https://nostarch.com'
 
-# วิธีที่ 2: ลบช่องว่างด้านซ้าย
-# ผลลัพธ์จะได้: 'python '
-left_stripped = text.lstrip()
+# ใช้ removeprefix() เพื่อลบ 'https://' ออก
+# วิธีใช้: ชื่อตัวแปร.removeprefix('คำที่ต้องการลบ')
+clean_url = nostarch_url.removeprefix('https://')
+# ผลลัพธ์: 'nostarch.com'
 
-# วิธีที่ 3: ลบช่องว่างทั้งสองด้าน
-# ผลลัพธ์จะได้: 'python'
-both_sides_stripped = text.strip()
+# ตัวอย่างการใช้งานอื่นๆ
+# ลบคำนำหน้าชื่อออก
+full_name = 'นายสมชาย ใจดี'
+name_only = full_name.removeprefix('นาย')
+# ผลลัพธ์: 'สมชาย ใจดี'
 
-# ตัวอย่างการใช้งานจริง: การทำความสะอาดข้อมูลที่ผู้ใช้ป้อนเข้ามา
-user_input = '   สวัสดี   '  # สมมติว่าผู้ใช้พิมพ์มีช่องว่างเยอะ
-cleaned_input = user_input.strip()  # ลบช่องว่างออกให้เรียบร้อย
-# ผลลัพธ์: 'สวัสดี'
+# ลบรหัสนำหน้าสินค้า
+product_code = 'PRD-12345'
+number_only = product_code.removeprefix('PRD-')
+# ผลลัพธ์: '12345'
 
-print(cleaned_input)
+print(clean_url)
+print(name_only)
+print(number_only)
