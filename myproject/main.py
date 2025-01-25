@@ -1,20 +1,25 @@
-# ตัวอย่างโค้ดที่มีข้อผิดพลาด
-# Python จะแสดงข้อความผิดพลาดตรงที่มีเครื่องหมาย ^ ด้านล่าง
-# message = 'One of Python's strengths is its diverse community.'
-#                          ^ ตำแหน่งที่เกิดข้อผิดพลาด
+# แบบฝึกหัดที่ 2-3: ข้อความส่วนตัว
+# สร้างตัวแปรเก็บชื่อคน และพิมพ์ข้อความทักทาย
+name = "Eric"
+message = f"Hello {name}, would you like to learn some Python today?"
+print(message)  # แสดงผล: Hello Eric, would you like to learn some Python today?
 
-# ข้อความแสดงความผิดพลาดที่จะเห็น:
-# SyntaxError: unterminated string literal (detected at line 1)
-# แปลว่า: มีข้อผิดพลาดเกี่ยวกับการเขียนข้อความไม่ถูกต้องตามหลักไวยากรณ์
+# แบบฝึกหัดที่ 2-4: รูปแบบชื่อ
+# สร้างตัวแปรเก็บชื่อ แล้วแสดงผลในรูปแบบต่างๆ
+name = "john smith"
 
-# วิธีแก้ไขที่ถูกต้อง - มี 3 วิธี:
-# วิธีที่ 1: ใช้เครื่องหมาย " " แทน ' '
-message = "One of Python's strengths is its diverse community."
+# แสดงชื่อเป็นตัวพิมพ์เล็กทั้งหมด
+print(name.lower())  # ผลลัพธ์: john smith
 
-# วิธีที่ 2: ใช้ \' แทน '
-message = 'One of Python\'s strengths is its diverse community.'
+# แสดงชื่อเป็นตัวพิมพ์ใหญ่ทั้งหมด
+print(name.upper())  # ผลลัพธ์: JOHN SMITH
 
-# วิธีที่ 3: ใช้ """ """ สำหรับข้อความที่มีทั้ง ' และ "
-message = """One of Python's "strengths" is its diverse community."""
+# แสดงชื่อแบบขึ้นต้นด้วยตัวใหญ่
+print(name.title())  # ผลลัพธ์: John Smith
 
-print(message)
+# แบบฝึกหัดที่ 2-5: คำคมคนดัง
+# พิมพ์คำคมพร้อมชื่อผู้พูด
+author = "Albert Einstein"
+quote = "Life is like riding a bicycle. To keep your balance, you must keep moving."
+print(f'{author} once said, "{quote}"')
+# ผลลัพธ์: Albert Einstein once said, "Life is like riding a bicycle. To keep your balance, you must keep moving."
