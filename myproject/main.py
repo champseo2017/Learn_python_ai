@@ -1,33 +1,32 @@
-# แบบฝึกหัดที่ 2-6: คำคมคนดัง แบบที่ 2
-# สร้างตัวแปรเก็บชื่อคนดังและข้อความแยกกัน
-famous_person = "Albert Einstein"
-message = f'{famous_person} once said, "Life is like riding a bicycle. To keep your balance, you must keep moving."'
-print(message)
+# นำเข้าไลบรารีที่จำเป็น
+from transformers import AutoTokenizer
 
-# แบบฝึกหัดที่ 2-7: การลบช่องว่างในชื่อ
-# \t คือการเว้นระยะแท็บ
-# \n คือการขึ้นบรรทัดใหม่
-name = "\t  John Smith\n   "
+# โหลด tokenizer จากโมเดลภาษา (ในที่นี้ใช้ BERT เป็นตัวอย่าง)
+# tokenizer คือเครื่องมือที่ช่วยตัดข้อความเป็นชิ้นๆ และแปลงเป็นตัวเลข
+tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 
-# พิมพ์ชื่อแบบมีช่องว่าง
-print("ชื่อต้นฉบับ:")
-print(name)
+# เริ่มต้นด้วยการแปลงข้อความเป็นตัวเลขที่คอมพิวเตอร์เข้าใจได้
+text = "this is a test"  # ข้อความที่เราต้องการวิเคราะห์
 
-# ลบช่องว่างด้านซ้าย
-print("\nลบช่องว่างด้านซ้าย:")
-print(name.lstrip())
+# แปลงข้อความเป็นตัวเลข (tokenization)
+# return_tensors="pt" คือการบอกให้ส่งผลลัพธ์ในรูปแบบ PyTorch tensor (ชุดตัวเลขที่ PyTorch ใช้)
+# inputs จะเป็น dictionary ที่มีหลาย key เช่น 'input_ids' (รหัสตัวเลขของคำ) และ 'attention_mask' (บอกว่าควรสนใจตรงไหน)
+inputs = tokenizer(text, return_tensors="pt")  
 
-# ลบช่องว่างด้านขวา
-print("\nลบช่องว่างด้านขวา:")
-print(name.rstrip())
+# แสดงขนาดของข้อมูลที่แปลงแล้ว
+# inputs['input_ids'] คือตัวเลขแทนคำในประโยค
+# .size() คือการดูขนาดของข้อมูล ผลลัพธ์เป็น [1, จำนวนโทเค็น]
+# โดย 1 คือจำนวนประโยค และตัวเลขที่สองคือจำนวนโทเค็น (ชิ้นส่วนของข้อความ)
+print(f"Input tensor shape: {inputs['input_ids'].size()}")
 
-# ลบช่องว่างทั้งสองด้าน
-print("\nลบช่องว่างทั้งสองด้าน:")
-print(name.strip())
+# แสดงตัวเลขที่แทนคำแต่ละคำ
+print(f"Token IDs: {inputs['input_ids'][0]}")  # แสดงรหัสตัวเลขของแต่ละคำ
 
-# แบบฝึกหัดที่ 2-8: การลบนามสกุลไฟล์
-filename = 'python_notes.txt'
-# ใช้ removesuffix() เพื่อลบ .txt ออก
-clean_filename = filename.removesuffix('.txt')
-print(f"ชื่อไฟล์เต็ม: {filename}")
-print(f"ชื่อไฟล์ไม่มีนามสกุล: {clean_filename}")
+# ลองแปลงตัวเลขกลับเป็นคำเพื่อเข้าใจว่าตัดคำอย่างไร
+tokens = tokenizer.convert_ids_to_tokens(inputs['input_ids'][0])
+print(f"Tokens: {tokens}")  # แสดงคำที่ถูกตัดแล้ว
+
+# อธิบายความหมาย:
+# [CLS] = สัญลักษณ์พิเศษที่เพิ่มเข้ามาตอนเริ่มประโยค
+# [SEP] = สัญลักษณ์พิเศษที่เพิ่มเข้ามาตอนจบประโยค
+# โทเค็นอื่นๆ คือคำต่างๆ ที่ถูกตัดแยกออกมาจากประโยค
